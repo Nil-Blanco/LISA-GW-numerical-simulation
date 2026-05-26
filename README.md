@@ -14,6 +14,8 @@ This repository contains numerical simulations developed to model the timing res
 - **Python:** Data manipulation (NumPy, SciPy) and data visualization (Matplotlib).
 - **LaTeX:** Mathematical documentation and report generation.
 
-## Upcoming
-- Graphical representation of the $\tau_{GW}$ evolution over time.
-- Detailed theoretical framework documentation.
+## Project Structure & Results
+
+* 📂 **`theory/`**: Contains the full mathematical derivation and the Final Degree Project document. Read the [Mathematical Framework](./theory/THEORY.md) for the analytical SPA approach.
+* 📂 **`figures/`**: Includes all the graphical representations of the $\tau_{GW}$ evolution and parameter sensitivity plots.
+* 📂 **`code/`**: Source scripts for the numerical simulations written in Python and Modern Fortran.

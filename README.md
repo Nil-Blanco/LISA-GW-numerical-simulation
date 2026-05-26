@@ -10,7 +10,7 @@ This repository contains numerical simulations developed to model the timing res
 - **Multi-language Implementation:** Integrates high-performance numerical routines written in Modern Fortran with Python for data analysis, manipulation, and visual representation.
 
 ## Core Technologies
-- **Fortran:** Fast execution of complex numerical derivations.
+- **Python & Fortran:** Fast execution of complex numerical derivations.
 - **Python:** Data manipulation (NumPy, SciPy) and data visualization (Matplotlib).
 - **LaTeX:** Mathematical documentation and report generation.
 

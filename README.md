@@ -3,6 +3,8 @@
 ## Overview
 This repository contains numerical simulations developed to model the timing residuals of gravitational waves ($\tau_{GW}$) interacting with the Laser Interferometer Space Antenna (LISA) geometry. The project focuses on the temporal evolution of these residuals and their analytical validation.
 
+📖 **Full Thesis:** [Read the complete BSc Physics Final Degree Project (PDF) here](ruta_hacia_tu_archivo/TFG_FINAL.pdf)
+
 ## Key Features
 - **Dynamic Geometry Modeling:** Simulates the propagation of gravitational waves through LISA's orbital configuration and specific geometry.
 - **Stationary Phase Approximation (SPA):** Implements SPA to analytically validate the numerical results.

@@ -1,0 +1,463 @@
+
+\documentclass[twocolumn]{revtex4-2} 
+
+\raggedbottom
+\usepackage{tabularx}
+\usepackage{graphicx,epsfig}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{hyperref} 
+\usepackage{float}
+\newcommand{\keyword}[1]{\noindent{\bf Keywords: }{#1}\\}
+\newcommand{\keywordcat}[1]{\noindent{\bf Paraules clau: }{#1}\\}
+\newcommand{\sdg}[1]{\noindent{\bf SDGs: }{#1}\\}
+\newcommand{\ods}[1]{\noindent{\bf ODSs: }{#1}\\}
+
+
+\pagestyle{fancy}
+\fancyhf{} 
+\lhead{\bf COSMOLOGICAL CONSTANT WITH LISA} 
+\rhead{Nil Blanco Lausín} 
+\lfoot{Treball de Fi de Grau}
+\rfoot{Barcelona, January 2026}
+
+
+
+\begin{document}
+
+\title{Impact of the cosmological constant on Gravitational Wave propagation:\\ Prospects for the LISA mission}
+
+
+\author{Author: Nil Blanco Lausín,}
+\affiliation{Facultat de F\'{\i}sica, Universitat de Barcelona, Diagonal 645, 08028 Barcelona, Spain.}
+
+\author{Advisor: Domènec Espriu Climent,} 
+\affiliation{Institut de Ciències del Cosmos (ICCUB)}
+
+\begin{abstract}
+{\bf Abstract:} It has been recently shown that the presence of a cosmological constant ($\Lambda$) affects the propagation of gravitational waves (GW) beyond the standard redshift, introducing modifications in the frequency and wave number. While previous studies focused on Pulsar Timing Arrays (PTA), this work analyzes the observability of these effects using the Laser Interferometer Space Antenna (LISA). We model the LISA arm as the baseline for the metric perturbation integral and derive the gravitational wave timing residual $\tau_{GW}$ in a Schwarzschild-de Sitter background. By applying a stationary phase approximation, we determine the optimal geometric configuration for detection. We discuss the feasibility of measuring $\Lambda$ through this method by comparing the theoretical time delay with LISA's sensitivity.
+
+\vspace{0.5cm} 
+\keyword{Gravitational Waves, LISA, Cosmological Constant, General Relativity, Time Delay.}
+\sdg{4 (Quality Education), 9 (Industry, Innovation and Infrastructure).}
+\end{abstract}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+
+The detection of Gravitational Waves (GW) by LIGO and Virgo has opened a new era in astrophysics, allowing us to probe the universe in ways previously impossible. While ground-based detectors operate at high frequencies, the future Laser Interferometer Space Antenna (LISA) will operate in the milli-Hertz band, sensitive to supermassive black hole mergers and other cosmological sources.
+
+Usually, the analysis of GW propagation assumes a simplified cosmological background where the expansion of the universe only affects the frequency via the redshift $z$. However, as pointed out in \cite{espriu2021}, the presence of cosmological fluids---specifically the cosmological constant $\Lambda$ and dust density---induces corrections in the equations of motion for metric perturbations. These corrections manifest as a phase shift and a modification of the effective wave number, leading to a specific time delay or "timing residual" $\tau_{GW}$ in the arrival of the wave.
+
+Previous works analyzed this effect in the context of Pulsar Timing Arrays (PTA), where the baseline $L$ (Earth-Pulsar distance) is of the order of kiloparsecs. In this work, we adapt this formalism to the geometry of the LISA mission. Although the LISA arm length ($L \approx 2.5 \times 10^6$ km) is significantly shorter than typical pulsar distances, the high precision of laser interferometry may offer a unique opportunity to test these cosmological corrections.
+
+The aim of this work is to calculate the specific timing residual $\tau_{GW}$ for the LISA geometry focusing on one of its three arms, determine the optimal angle of incidence $\alpha$ that maximizes this effect, and assess whether this method is capable of measuring the cosmological constant through this mechanism. The extension to the full interferometric detector response is beyond the scope of this work and is left for future studies.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{The LISA Mission}
+
+The Laser Interferometer Space Antenna (LISA) is a future space-based gravitational wave observatory led by the European Space Agency (ESA). Unlike ground-based detectors such as LIGO and Virgo, which are limited by seismic noise at low frequencies, LISA will operate in space, allowing it to detect gravitational waves in the milli-Hertz band ($0.1$ mHz to $1$ Hz). This frequency range is rich in astrophysical sources, including supermassive black hole binaries, extreme mass ratio inspirals (EMRIs), and galactic binaries \cite{AmaroSeoane2017}.
+
+
+\begin{table}[ht]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{llll}
+\toprule
+\textbf{Phenomenon} & \textbf{Redshift / Distance} & \textbf{Freq. ($f$)} & \textbf{Strain ($h$)} \\
+\midrule
+\textbf{MBHB} & $z \approx 1-20$, $\sim 100$ Gpc & $10^{-5 \dots -1}$ Hz & $10^{-20 \dots -17}$ \\
+\addlinespace
+\textbf{EMRI} & $z \approx 2$, $\sim 16$ Gpc & $1 \dots 100$ mHz & $10^{-22 \dots -21}$ \\
+\addlinespace
+\textbf{UCB/GB} & $z \approx 0$, $1-20$ kpc & $0.1 \dots 100$ mHz & $10^{-23 \dots -21}$ \\
+\addlinespace
+\textbf{SOBHB} & $z \approx 0.02$, $\sim 100$ Mpc & $10$ mHz $\dots 1$ Hz & $10^{-24 \dots -22}$ \\
+\addlinespace
+\textbf{SGWB} & $z \gg 1000$, Horizon & $10^{-5 \dots -1}$ Hz & $10^{-12 \dots -9}$ \\
+\bottomrule
+\end{tabular}
+\caption{LISA Observational Phenomena summary\cite{AmaroSeoane2017}.}
+\label{tab:lisa_summary}
+\end{table}
+
+\subsection{Configuration and Orbit}
+The observatory consists of three spacecraft arranged in an equilateral triangle constellation. They will trail the Earth in its heliocentric orbit at a distance of approximately 50 million kilometers (or $20^\circ$ behind the Earth). The center of the constellation traces an Earth-like orbit, while the plane of the triangle is inclined by $60^\circ$ with respect to the ecliptic.
+
+Crucially for this work, the three spacecraft are separated by a baseline arm length of $L \approx 2.5 \times 10^6$ km. While this distance is vast compared to Earth-bound interferometers (4 km for LIGO), it is significantly shorter than the galactic scales characteristic of Pulsar Timing Arrays (PTA). However, the highly precise laser links between the satellites compensate for the shorter baseline, potentially allowing for the measurement of subtle cosmological effects.
+
+\subsection{Measurement Principle}
+LISA operates as a giant Michelson interferometer designed to detect gravitational waves in the low-frequency band ($10^{-4}$ Hz to $1$ Hz). This bridges the gap between LIGO/Virgo ($10$--$10^3$ Hz) and Pulsar Timing Arrays ($\sim 10^{-9}$ Hz). Each spacecraft houses two free-falling test masses (gold-platinum cubes) that act as the reference for geodesic motion. Lasers are exchanged between the spacecraft to continuously monitor the distance between these test masses, requiring the phase locking of the laser signals to be maintained for timescales of $\Delta T=1000$ s.
+
+A passing gravitational wave distorts the spacetime metric, changing the proper distance between the spacecraft. This change manifests as a phase shift in the laser light received by the distant satellite. LISA is capable of detecting strain amplitudes as small as $h \approx 10^{-21}$, which corresponds to a displacement resolution in the picometer range ($10^{-12}$ m). Due to the inequality of the arm lengths and the rotation of the constellation, standard interferometry is insufficient; instead, a technique known as Time Delay Interferometry (TDI) \cite{Tinto2021} is used to cancel laser phase noise. For the purpose of the theoretical analysis in this work, we will model the measurement as a timing residual accumulated over the photon's path along a single arm of length $L$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Theoretical Background}
+
+The propagation of gravitational waves is conventionally studied in a simplified cosmological setting \cite{CarrollSpacetime, MaggioreVol1} where the expansion of the universe is accounted for solely by the redshift of the frequency. However, recent work by Espriu and Rodoreda \cite{espriu2021} has shown that in a $\Lambda$CDM universe, the presence of cosmological fluids—specifically the cosmological constant $\Lambda$ and dust density—introduces non-trivial corrections to the wave propagation.
+
+\subsection{Gravitational Waves in a $\Lambda$CDM Universe}
+The analysis in \cite{espriu2021} considers perturbations on a Schwarzschild-de Sitter (SdS) background, which describes a mass $M$ embedded in a universe with a cosmological constant. When the wave equation is solved in this background and transformed into comoving Friedmann-Lemaître-Robertson-Walker (FLRW) coordinates, corrections proportional to $\Lambda$ (and matter density $\rho$) appear.
+
+Explicitly, the propagation is governed by the linearized equation of motion for metric perturbations in a FLRW background. For a universe dominated by a cosmological constant $\Lambda$, the wave equation in comoving coordinates $\{T, R\}$ is given by \cite{espriu2021}:
+\begin{equation}
+\Box_{FLRW}h_{ij}=0
+\label{eq:wave_eq_FLRW}
+\end{equation}
+\begin{equation}
+\resizebox{0.9\hsize}{!}{$ % Ajusta al 95% del ancho de columna
+\Box_{FLRW}h_{ij} \equiv \left[\partial_{T}^{2}-\sqrt{\frac{\Lambda}{3}}\partial_{T}-\frac{1}{a^{2}}\left(\partial_{R}^{2}+\frac{2}{R}\partial_{R}\right)-2\frac{\Lambda}{3}\right]h_{ij}
+$}
+\label{eq:wave_eq_FLRW}
+\end{equation}
+where $a(T)$ is the scale factor. An approximate solution to this equation can be obtained by transforming the SdS solution, yielding a waveform that explicitly incorporates the expansion corrections:
+\begin{equation}
+\resizebox{0.9\hsize}{!}{$
+h_{ij}^{FLRW}(T,R)=\frac{\epsilon_{ij}^{\prime}}{R}\left(1+\sqrt{\frac{\Lambda}{3}}T+\frac{1}{2}\frac{\Lambda}{3}T^{2}\right)\cos(\omega_{eff}T-k_{eff}R)$}
+\label{eq:solution_FLRW}
+\end{equation}
+It is important to note that this expansion and the resulting solution are valid only well inside the cosmological horizon, specifically when the condition $H Z_A \ll 1$ (where $Z_A$ is the distance to the source) is satisfied, ensuring that the cosmological redshift remains small.
+
+Unlike the standard redshift, these corrections affect the effective wave number $k_{eff}$ differently than the frequency $\omega_{eff}$. This leads to a dispersion-like effect where the phase of the wave accumulates a shift as it propagates through the cosmological fluid.
+
+\subsection{The Gravitational Wave Timing Residual}
+The physical observable susceptible to these corrections is the timing residual, $\tau_{GW}$. It represents the difference in the arrival time of a photon (or electromagnetic pulse) due to the metric perturbation caused by the gravitational wave.
+
+For a photon traveling from a source (or emitter) to an observer (receiver) separated by a distance $L$, the timing residual is defined as:
+\begin{equation}
+\tau_{GW}(T) = -\frac{1}{2} \hat{n}^i \hat{n}^j \mathcal{H}_{ij}(T),
+\label{eq:tau_def}
+\end{equation}
+where $\hat{n}$ is the unit vector along the path of propagation and $\mathcal{H}_{ij}$ involves the integral of the metric perturbation $h_{ij}$ along the line of sight.
+
+As derived in \cite{espriu2021}, the timing residual is given by the integral:
+\begin{equation}
+\mathcal{H}_{ij}(T) = \frac{L}{c} \int_{-1}^{0} h_{ij}^{FLRW} \left(T + \frac{xL}{c}, \vec{R}(x) \right) dx,
+\label{eq:integral_general}
+\end{equation}
+where $x$ is a parametrization of the path, $T$ is the time at the receiver, and $\vec{R}(x)$ describes the spatial trajectory of the photon.
+
+Originally, this formalism was applied to Pulsar Timing Arrays (PTA), where the "emitter" is a pulsar and the "receiver" is Earth, with $L$ being on the order of kiloparsecs.
+
+The study concluded that while the effect is small, it could be observable for sources at Gpc distances. In the following sections, we will adapt this integral to the geometry of the LISA mission, replacing the Earth-Pulsar baseline with the LISA arm link.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Optimization for LISA Geometry}
+
+In this section, we adapt the general formalism to the specific geometry of the LISA mission. Our goal is to find the configuration that maximizes the timing residual $\tau_{GW}$, thereby optimizing the potential for detecting the cosmological constant $\Lambda$.
+
+\subsection{Geometric Configuration}
+
+
+
+
+We consider the same triangular configuration as before replacing the Earth and the Pulsar with two of the satelites of LISA ($A$ and $B$) being $L$ the arm longitude. We complete the triangle with the source of the GW. Let $Z_A$ be the distance from the source to satellite $A$, and $\alpha$ be the angle subtended at vertex $A$ with respect to the source.
+
+
+\vspace{-0.2cm}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\columnwidth]{dispoLISA.png}
+\caption{Geometry of the system for LISA.}
+\label{fig:sample}
+\end{figure}
+
+
+The position along the LISA arm can be parameterized by a vector $\vec{R}(x)$, where the parameter $x$ runs from $-1$ to $0$. The position vector is given by:
+\begin{equation}
+\vec{R}(x) = \vec{P} + L(1+x)\hat{n},
+\label{eq:position_vector}
+\end{equation}
+where $\vec{P}$ is the position of satellite $B$, and $\hat{n}$ is the unit vector along the arm direction. 
+
+Given the astrophysical scales involved, we assume the condition $Z_A \gg L$. Under this approximation, the magnitude of the position vector simplifies to:
+\begin{equation}
+R(x) \approx Z_A + xL \cos(\alpha).
+\label{eq:R_approx}
+\end{equation}
+This linear approximation is sufficient to capture the leading-order effects of the cosmological corrections over the baseline of the detector.
+
+
+\subsection{The Timing Residual Integral}
+The gravitational wave timing residual $\tau_{GW}$ is obtained by integrating the metric perturbation along the photon path between the satellites. Substituting the FLRW metric perturbation into the timing residual definition and working with natural units ($c=1$), we obtain the explicit expression for the timing residual:
+
+\begin{equation}
+\tau_{GW} \propto -\frac{L\epsilon}{2}\sin^{2}(\alpha) \int_{-1}^{0} \frac{\epsilon'_{ij}(1+H T(x))}{R(x)}  \cos[\Theta(x)] dx,
+\label{eq:tau_explicit}
+\end{equation}
+
+\noindent where $\epsilon$ represents the magnitude of the gravitational wave amplitude (and we assume for simplicity that the non-zero components of the transformed polarization tensor have a characteristic amplitude $\epsilon \sim |\epsilon'_{ij}|$), $\alpha$ is the polar angle, $R(x)$ describes the photon path and $\Theta(x)$ is the phase of the wave as it propagates through the expanding universe. 
+
+The phase function $\Theta(x)$ is crucial for our analysis. Expanding the terms, it takes the form of a quadratic function:
+\begin{equation}
+\Theta(x) = A x^2 + B x + C,
+\label{eq:phase_quadratic}
+\end{equation}
+where the coefficients $A$, $B$, and $C$ depend on the cosmological parameters ($H, \Lambda$) and the geometry ($L, Z_A, \alpha$). Specifically, the coefficients are found to be:
+\begin{align}
+A &= \frac{\omega H L^2}{2} (\cos\alpha - 2) \cos\alpha, \\
+B &= L\omega \left[1 -H Z_A + (-H T_A + H Z_A - 1) \cos\alpha \right], \\
+C &= \frac{\omega}{2} (-2 H T_A Z_A + H Z_A^2 + 2 T_A - 2 Z_A).
+\end{align}
+
+\subsection{Maximization via Stationary Phase}
+To find the optimal configuration, we employ the stationary phase approximation \cite{ArfkenWeber}. The integral in Eq. (\ref{eq:tau_explicit}) is highly oscillatory due to the large frequency $\omega$ and distance $Z_A$. The main contribution to the integral comes from the region where the phase is stationary, i.e., where the oscillation is "slowest."
+
+The stationary point $x_0$ is found where the derivative of the phase vanishes, which corresponds to the vertex of the parabola $Ax^2 + Bx + C$:
+\begin{equation}
+x_0 = -\frac{B}{2A}.
+\end{equation}
+Evaluating the integral using the stationary phase method yields a result proportional to the cosine of the phase at the stationary point:
+\begin{equation}
+\tau_{GW} \approx K \cos\left( \frac{B^2}{4A} \right).
+\end{equation}
+
+\noindent where $K$ is a prefactor, a real number depending on the geometry and the cosmological parameters that does not affect the oscilations.
+To maximize this timing residual, we look for the condition where the argument of the cosine vanishes (or is minimized), which implies $B=0$. 
+
+Setting $B=0$ and simplifying under the assumption $Z_A \approx T_A$ (since the travel time is dominated by the distance to the source), we derive the condition:
+\begin{equation}
+-H Z_A - \cos(\alpha) + 1 = 0 \implies H = \frac{1 - \cos(\alpha)}{Z_A}.
+\end{equation}
+Using the trigonometric identity $1 - \cos(\alpha) = 2 \sin^2(\alpha/2)$ and assuming we are in the present where $H=H_0$, we isolate the angle $\alpha$:
+\begin{equation}
+\alpha_{optim} = 2 \arcsin \left( \sqrt{\frac{H_0 Z_A}{2}} \right).
+\label{eq:alpha_optim}
+\end{equation}
+
+Thus determining the angle that maximizes the signal is tantamount to determinining $H_0$, and therefore, $\Lambda$.
+
+
+\subsection{Numerical Analysis}
+
+We evaluate the optimal angle $\alpha_{optim}$ using $H_0 \approx 70 \text{ km/s/Mpc} \approx 2.26 \times 10^{-18} \text{ s}^{-1}$. For a fiducial source at different distances $Z_A$ Eq. (\ref{eq:alpha_optim}) yields different values for $\alpha_{optim}$ between $0^\circ$ and $90^\circ$. This confirms that an oblique incidence maximizes the cosmological phase shift.
+
+Table \ref{tab:optimal_angles} shows the evolution of this angle. The results follow the scaling $\alpha \propto \sqrt{Z_A}$, implying that closer sources require narrower incidence angles.
+\begin{table}[!ht]
+\centering
+\small 
+\begin{tabular}{c c c} 
+ \hline \hline
+ \textbf{Distance} ($Z_A$) & \textbf{Angle} (rad) & \textbf{Angle} (deg) \\ 
+ \hline
+ 1.0 Gpc & 0.702 & $40.25^\circ$ \\ 
+ 0.5 Gpc & 0.492 & $28.17^\circ$ \\
+ 0.1 Gpc & 0.218 & $12.51^\circ$ \\
+ 0.05 GPc & 0.153 & $8.75^\circ$ \\
+ \hline \hline
+\end{tabular}
+\caption{Optimal incidence angle $\alpha$ for different source distances ($Z_A$).}
+\label{tab:optimal_angles}
+\end{table}
+
+\vspace{-0.5cm}
+
+\section{Numerical simulation}
+
+In this section, we numerically evaluated the integral (\ref{eq:tau_explicit}) for values of $\alpha$ between $0^\circ$ and $90^\circ$. We employed a standard trapezoidal rule with a high-resolution grid to ensure stability and convergence \cite{NumericalRecipes}. The discretization step was chosen to be sufficiently small to resolve the rapid phase oscillations.
+\vspace{-0.2cm}
+\subsection{Analysi for timing residual}
+
+We compared the curves obtained in both $H=0$ and $H=H_0$ cases. We used the standard cosmological parameters $H_0 \approx 2.26 \times 10^{-18} \text{ s}^{-1}$ and a frequency $f=100 \text{mHz}$ $\Rightarrow \omega \approx 0.628 \text{ s}^{-1}$.
+
+
+\begin{figure}[H]
+ \centering
+
+ \includegraphics[width=0.8\columnwidth]{FINAL1GPC.png} \hfill
+
+ \caption{Comparison of the cases where H=0 (dashed line) and H=$H_0$ (solid line) for $Z_A$=1GPc}
+ \label{fig:wide_comparison}
+\end{figure}
+
+\vspace{-0.35cm}
+
+\begin{figure}[H]
+ \centering
+
+
+ \includegraphics[width=0.8\columnwidth]{FINAL0.1GPC.png}
+ \caption{Comparison of the cases where H=0 (dashed line) and H=$H_0$ (solid line) for \textbf{$Z_A$=0.1GPc.}}
+ \label{fig:wide_comparison}
+\end{figure}
+
+
+\vspace{-0.2cm}
+
+It is shown that the difference is proportional to the distance and similar to the theoretical saddle point approximation.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c} 
+ \hline \hline
+ \textbf{Distance} ($Z_A$) & \textbf{Angle(theo)} & \textbf{Angle(sim)} \\ 
+ \hline
+ 1.0 Gpc & $40.25^\circ$ & $27.00^\circ$\\ 
+ 0.1 Gpc & $12.51^\circ$ & $7.00^\circ$\\
+ \hline \hline
+\end{tabular}
+\caption{Theoretical vs simulation comparison.}
+\label{tab:sim_angles}
+\end{table}
+
+\subsection{Non-zero phase locking}
+
+\vspace{-0.1cm}
+
+Now, we extend the numerical analysis to simulate the time evolution of the signal over a phase locking. We add a phase locking $\Delta T$ to the value of $T$.
+
+
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.8\columnwidth]{DELTATFINAL.png} 
+ \caption{Curves with $T=Z_A +\Delta T$ where $\Delta T$ goes from 0s to 1000s (color) and their average mean response (solid black).}
+ \label{fig:temporal_evolution}
+\end{figure}
+
+Figure \ref{fig:temporal_evolution} confirms  that the optimal angle remains consistent on average and is not an artifact of the static approximation ($\Delta T=0$), demonstrating that the phase locking does not wash out the signal.
+
+
+\subsection{Sensibility to \texorpdfstring{$H_0$}{H0} value}
+
+Once we show the dependence on $H_0$, we evaluate $H=H_0 \pm 10\%$ in order to show how sensitive is to changes on the \textit{Hubble constant} value:
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.8\columnwidth]{FINALH+-.png} 
+ \caption{Comparison of the four cases of H equal to: 0 (yellow), $H_0$ (black), $H_0^{-10\%}$(red) and $H_0^{+10\%}$(blue)}
+ \label{fig:H+-}
+\end{figure}
+
+\vspace{-0.2cm}
+We can see that the system is sensitive to small changes, which means that we can not only identify that we have a cosmological constant, but we can also constrain its true value with high precision.
+
+\vspace{-0.5cm}
+
+
+
+\section{Conclusions}
+
+In this work, we have extended the study of gravitational wave propagation in a Schwarzschild-de Sitter background to the specific geometry of the LISA mission. Building upon the formalism initially developed for Pulsar Timing Arrays, we have derived the theoretical expression for the timing residual $\tau_{GW}$ induced by the cosmological constant $\Lambda$ along a single LISA arm.
+
+Our analysis leads to three main conclusions. First, unlike standard redshift effects, the phase shift induced by $\Lambda$ is highly dependent on the geometric configuration of the source relative to the detector plane. Through the stationary phase approximation, we theoretically determined that the effect is maximized at oblique incidence angles.
+
+Second, our numerical simulations confirm the existence of this maximum but reveal a shift in the optimal angle compared to the analytical prediction. This discrepancy suggests that while the stationary phase approximation captures the qualitative behavior and the scaling law $\alpha \propto \sqrt{Z_A}$, full numerical integration is required for precise parameter estimation. Furthermore, the temporal analysis over a characteristic wave period ($\sim 1000$ s) confirms that the signal is not washed out by the phase locking process, as the time-averaged response retains the optimal geometric dependence.
+
+Finally, the sensitivity analysis demonstrates that deviations of $\pm 10\%$ in the Hubble parameter $H_0$ result in distinguishable changes in the timing residual amplitude. This implies that LISA has the potential not only to detect these cosmological corrections but to place independent constraints on $\Lambda$. While this study considered a simplified single-arm model, future work should incorporate the full Time Delay Interferometry (TDI) response to assess the detectability of this effect under realistic noise conditions.
+
+
+\begin{thebibliography}{99}
+
+
+\bibitem{NumericalRecipes} W. H. Press, S. A. Teukolsky, W. T. Vetterling, and B. P. Flannery, \textsl{Numerical Recipes: The Art of Scientific Computing}, 3rd Ed., Cambridge University Press, New York (2007).
+
+
+\bibitem{MaggioreVol1} M. Maggiore, \textsl{Gravitational Waves. Vol. 1: Theory and Experiments}, Oxford University Press, Oxford (2008).
+
+
+\bibitem{ArfkenWeber} G. B. Arfken, H. J. Weber, and F. E. Harris, \textsl{Mathematical Methods for Physicists: A Comprehensive Guide}, 7th Ed., Academic Press, San Diego (2013).
+
+
+\bibitem{AmaroSeoane2017} P. Amaro-Seoane et al., \textsl{Laser Interferometer Space Antenna}, arXiv:1702.00786 [astro-ph.IM] (2017).
+
+\bibitem{CarrollSpacetime} S. M. Carroll, \textsl{Spacetime and Geometry: An Introduction to General Relativity}, Cambridge University Press (2019)
+
+
+
+
+\bibitem{espriu2021} D. Espriu and M. Rodoreda, \textsl{Effect of the cosmological constant on gravitational wave propagation}, Phys. Rev. D \textbf{103}, 043526 (2021).
+
+
+\bibitem{lisa_snr} S. Babak, M. Hewitson, and A. Petiteau, \textsl{LISA sensitivity and SNR calculations}, Phys. Rev. D \textbf{104}, 042003 (2021).
+
+\bibitem{Tinto2021} M. Tinto and S. V. Dhurandhar, \textsl{Time-Delay Interferometry}, Living Rev. Relativ. \textbf{24}, 1 (2021).
+
+\end{thebibliography}
+
+\clearpage
+\onecolumngrid 
+\thispagestyle{empty} 
+
+
+\noindent
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lr}
+    \textbf{COSMOLOGICAL CONSTANT WITH LISA} & \textbf{Nil Blanco Lausín} \\
+    \hline
+\end{tabular*}
+
+\vspace{1cm}
+
+
+\begin{center}
+    {\Large \textbf{Impacte de la constant cosmològica en la propagació d'ones gravitatòries:\\ Perspectives per a la missió LISA}}
+    
+    \vspace{0.5cm}
+    
+    Author:   Nil Blanco Lausín, \\
+    \textit{Facultat de Física, Universitat de Barcelona, Diagonal 645, 08028 Barcelona, Spain.}
+    
+    \vspace{0.2cm}
+    Advisor: Domènec Espriu Climent,
+\end{center}
+
+\vspace{0.5cm}
+
+% --- 3. RESUM ---
+\noindent \textbf{Resum:} Recentment s'ha demostrat que la presència d'una constant cosmològica ($\Lambda$) afecta la propagació de les ones gravitatòries (GW) més enllà del desplaçament cap al roig estàndard, introduint modificacions en la fase i el nombre d'ona. Mentre que estudis previs es centraven en Pulsar Timing Arrays (PTA), aquest treball analitza l'observabilitat d'aquests efectes utilitzant la Laser Interferometer Space Antenna (LISA). Modelem el braç de LISA com a línia de base per a la integral de la pertorbació mètrica i derivem el residu temporal $\tau_{GW}$ en un fons de Schwarzschild-de Sitter. Aplicant l'aproximació de fase estacionària, determinem la configuració geomètrica òptima per a la detecció. Discutim la viabilitat de mesurar $\Lambda$ a través d'aquest mètode comparant el retard temporal teòric amb la sensibilitat de LISA.
+
+\vspace{0.3cm}
+
+\noindent \textbf{Paraules clau:} Ones Gravitatòries, LISA, Constant Cosmològica, Relativitat General, Retard Temporal.
+
+\vspace{0.3cm}
+
+\noindent \textbf{ODSs:} Aquest TFG està relacionat amb els Objectius de Desenvolupament Sostenible (SDGs) "Educació de qualitat" i "Indústria, innovació, infraestructures".
+
+\vspace{0.3cm}
+
+\begin{center}
+\textbf{Objectius de Desenvolupament Sostenible (ODSs o SDGs)}
+\end{center}
+
+
+\begin{center}
+    \small
+    \renewcommand{\arraystretch}{1.2}
+  
+    \begin{tabular}{|l|c|l|c|}
+        \hline
+        1. Fi de la pobresa & & 10. Reducció de les desigualtats & \\ \hline
+        2. Fam zero & & 11. Ciutats i comunitats sostenibles & \\ \hline
+        3. Salut i benestar & & 12. Consum i producció responsables & \\ \hline
+        4. Educació de qualitat & \textbf{X} & 13. Acció climàtica & \\ \hline
+        5. Igualtat de gènere & & 14. Vida submarina & \\ \hline
+        6. Aigua neta i sanejament & & 15. Vida terrestre & \\ \hline
+        7. Energia neta i sostenible & & 16. Pau, justícia i institucions sòlides & \\ \hline
+        8. Treball digne i creixement econòmic & & 17. Aliança pels objectius & \\ \hline
+        9. Indústria, innovació, infraestructures & \textbf{X} & & \\ \hline
+    \end{tabular}
+\end{center}
+
+\vspace{0.2cm}
+
+\noindent El contingut d'aquest TFG, part d'un grau universitari de Física, es relaciona amb lODS 4 (Educació de qualitat), ja que contribueix a l'educació superior i a la formació en recerca científica avançada. També es relaciona amb l'ODS 9 (Indústria, innovació i infraestructures) atès que el treball se centra en la missió LISA, una futura infraestructura espacial d'avantguarda que impulsarà la innovació tecnològica.
+
+\vspace{0.5cm}
+
+
+
+\end{document}
+
+
+
+
